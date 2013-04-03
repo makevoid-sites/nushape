@@ -1,0 +1,91 @@
+a {
+  text-decoration: none; }
+
+* {
+  box-sizing: border-box; }
+
+html, body, #container {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background: white;
+  text-align: center;
+  font-family: Helvetica;
+  font-family: Futura; }
+
+#container {
+  width: 30%;
+  margin: 0 auto 60px;
+  max-width: 1000px; }
+
+.center {
+  text-align: center; }
+
+.vcenter {
+  margin: 60px 0 0 0; }
+
+body > header > h1:hover {
+  opacity: 0.8; }
+
+body > header > h1 > a > img {
+  width: 200px; }
+
+a {
+  color: #666666; }
+  a:hover {
+    color: #999999; }
+
+a.current {
+  color: #111111; }
+  a.current:hover {
+    color: #111111; }
+
+#container > nav {
+  margin-left: 30px;
+  margin-bottom: 30px; }
+  #container > nav a {
+    border-right: 1px solid black;
+    padding-right: 9px; }
+  #container > nav a:last-child {
+    border-right: 0; }
+
+.content img {
+  width: 100%;
+  margin: 10px 0; }
+
+.home img {
+  width: 300px;
+  margin: 50px auto; }
+
+.peluches img, .sketchbook img {
+  cursor: pointer; }
+  .peluches img.vertical, .sketchbook img.vertical {
+    width: 60%; }
+
+img.ico {
+  width: 20px;
+  display: block;
+  margin: 20px auto 0px; }
+
+.clear {
+  clear: both; }
+
+p.micro {
+  margin: 70px 0 0 0;
+  font-size: 0.8em; }
+
+.lightbox {
+  position: absolute;
+  width: 100%;
+  display: none;
+  text-align: center;
+  z-index: 20; }
+  .lightbox img {
+    cursor: pointer;
+    width: 85%;
+    margin: 63px auto;
+    position: absolute;
+    padding: 30px;
+    border: 8px solid #eeeeee;
+    background: #fafafa; }

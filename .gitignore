@@ -1,0 +1,6 @@
+.sass-cache
+*.sql
+*.sqlite
+dbox
+*.log
+public/photos_src

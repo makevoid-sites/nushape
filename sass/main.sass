@@ -1,0 +1,112 @@
+// configs
+
+$sections: ".peluches, .sketchbook"
+
+// reset
+
+a
+  text-decoration: none
+
+*
+  box-sizing: border-box
+
+html, body, #container
+  margin: 0
+  padding: 0
+
+// style
+
+body
+  background: #FFF
+
+  text-align: center
+
+  font-family: Helvetica
+  font-family: Futura
+
+
+#container
+  width: 30%
+  margin: 0 auto 60px
+  max-width: 1000px
+
+.center
+  text-align: center
+
+.vcenter
+  margin: 60px 0 0 0
+
+
+body > header > h1
+  &:hover
+    opacity: 0.8
+
+body > header > h1 > a > img
+  width: 200px
+
+a
+  color: #666
+  &:hover
+    color: #999
+a.current
+  color: #111
+  &:hover
+    color: #111
+
+
+#container > nav
+  margin-left: 30px
+  margin-bottom: 30px
+  a
+    border-right: 1px solid black
+    padding-right: 9px
+  a:last-child
+    border-right: 0
+
+.content img
+  width: 100%
+  margin: 10px 0
+
+.home
+
+.home img
+  width: 300px
+  margin: 50px auto
+
+#{$sections}
+  img
+    cursor: pointer
+    &.vertical
+      width: 60%
+
+img.ico
+  width: 20px
+  display: block
+  margin: 20px auto 0px
+
+.clear
+  clear: both
+
+p.micro
+  margin: 70px 0 0 0
+  font-size: 0.8em
+
+
+// modules
+
+.lightbox
+  position: absolute
+  width: 100%
+  //background: rgba(220,220,220,0.3)
+  display: none
+  text-align: center
+  z-index: 20
+  img
+    cursor: pointer
+    width: 85%
+    margin: 63px auto
+    position: absolute
+    padding: 30px
+    border: 8px solid #EEE
+    background: #FAFAFA
+
