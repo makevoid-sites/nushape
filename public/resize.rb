@@ -6,7 +6,7 @@
 # configs
 
 SIZE = "1100x700"
-SIZE_THUMB = "600x400"
+SIZE_THUMB = "400x400"
 
 # helpers
 

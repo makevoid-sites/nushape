@@ -47,7 +47,7 @@
     });
     $(".lightbox").append("<img src='" + url + "' />");
     return $(".lightbox img").imagesLoaded(function() {
-      var img, marginLeft, padding, width;
+      var img, links_top, marginLeft, padding, top, width;
 
       $(".lightbox").css({
         display: "block"
@@ -57,15 +57,40 @@
       img.css({
         width: width
       });
+      top = $(document).scrollTop();
       img.css({
-        top: $(document).scrollTop()
+        top: top
       });
       marginLeft = img.width() / 2;
       padding = 15;
-      return $(".lightbox").css({
+      $(".lightbox").css({
         left: -marginLeft - padding
       });
+      links_top = img.height() / 2 + 60;
+      $(".lightbox a").css({
+        top: top + links_top,
+        left: img.width()
+      });
+      $(".lightbox a.next").css({
+        left: img.width()
+      });
+      $(".lightbox a").css({
+        left: 180
+      });
+      $(".lightbox a.next").css({
+        right: 180
+      });
+      return console.log(img.width());
     });
+  };
+
+  lightbox.show_arrows = function() {
+    var next_arrow, prev_arrow;
+
+    prev_arrow = "<a class='prev' href='javascript:void(0)'><</a>";
+    next_arrow = "<a class='next' href='javascript:void(0)'>></a>";
+    $(".lightbox").prepend(prev_arrow);
+    return $(".lightbox").prepend(next_arrow);
   };
 
   lightbox.resize = function() {

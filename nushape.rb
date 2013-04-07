@@ -25,7 +25,7 @@ class Nushape < Sinatra::Base
 
   ### helpers
 
-  def category(url=request.path)
+  def firstpath(url=request.path)
     url.split("/")[1]
   end
 
@@ -43,17 +43,19 @@ class Nushape < Sinatra::Base
   end
 
   def load_categories
-    cats = Dir.glob("#{PATH}/public/photos/#{category}/*")
-    
+    categories = Dir.glob("#{PATH}/public/photos/#{firstpath}/*")
+    categories.map do |category|
+      File.basename category
+    end
   end
 
   def load_photos
-    paths = Dir.glob("#{PATH}/public/photos/#{category}/#{subpath}/*.{jpg,JPG}")
+    paths = Dir.glob("#{PATH}/public/photos/#{firstpath}/#{subpath}/*.{jpg,JPG}")
     @photos = paths.map do |photo|
       dimensions = Dimensions.dimensions photo
       vertical = dimensions[0] < dimensions[1]
       { name: File.basename(photo), vertical: vertical }
-    end.sort_by{ |p| p[:name] }
+    end.sort_by{ |p| p[:name].to_i }
   end
 
   ###

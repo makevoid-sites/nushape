@@ -1,2 +1,6 @@
 - categories = load_categories
-= categories
+
+.category
+  - categories.each do |category|
+    %a{ href: "/#{firstpath}/#{category}" }
+      %img{ src: "/photos_thumbs/#{firstpath}/#{category}/1.jpg" }

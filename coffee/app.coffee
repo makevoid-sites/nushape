@@ -43,18 +43,37 @@ lightbox.show = (url) ->
 
   $(".lightbox").append("<img src='#{url}' />")
 
+  #this.show_arrows()
+
   $(".lightbox img").imagesLoaded ->
     $(".lightbox").css({ display: "block" })
     width = lightbox.image_width()
     img = $(".lightbox img")
     img.css({ width: width })
-    img.css({ top: $(document).scrollTop() })
+    top = $(document).scrollTop()
+    img.css({ top: top })
     marginLeft = img.width() / 2
     padding = 15 # from css
     # console.log $(window).width(), img.width(), marginLeft
     $(".lightbox").css( left: -marginLeft-padding )
 
+    links_top = img.height() / 2 + 60 # TODO: use outerheight
 
+    $(".lightbox a").css( top: top+links_top, left: img.width()  )
+    $(".lightbox a.next").css( left: img.width()  )
+    
+    $(".lightbox a").css( left: 180 )
+    $(".lightbox a.next").css( right: 180 )
+    console.log(img.width())
+
+    # top: 286px;
+    # left: 825px;
+
+lightbox.show_arrows = ->
+  prev_arrow = "<a class='prev' href='javascript:void(0)'><</a>"
+  next_arrow = "<a class='next' href='javascript:void(0)'>></a>"
+  $(".lightbox").prepend prev_arrow
+  $(".lightbox").prepend next_arrow
 
 lightbox.resize = ->
   height = $("body").height()

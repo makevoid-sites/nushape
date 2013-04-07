@@ -1,5 +1,5 @@
 - photos = load_photos
 
 - photos.each do |photo|
-  - path = "#{subpath}/#{photo[:name]}"
+  - path = "#{firstpath}/#{subpath}/#{photo[:name]}"
   %img{ src: "/photos_thumbs/#{path}", class: "#{"vertical2" if photo[:vertical]}", :"data-src_big" => "/photos/#{path}"}

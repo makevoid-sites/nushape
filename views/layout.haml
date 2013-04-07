@@ -15,9 +15,9 @@
             /= TITLE
       %nav
         - nav_link_to "Plushies"  , "/peluches"
-        - nav_link_to "Sketchbook", "/sketchbook"
+        - nav_link_to "Sketchbooks",  "/sketchbook"
         - nav_link_to "Contacts"  , "/contacts"
-      %section.content{ class: subpath || "home" }
+      %section.content{ class: firstpath || "home" }
         = yield
         .clear
 

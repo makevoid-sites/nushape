@@ -50,6 +50,9 @@ a.current {
   #container > nav a:last-child {
     border-right: 0; }
 
+.content {
+  margin-left: 26px; }
+
 .content img {
   width: 100%;
   margin: 10px 0; }
@@ -60,6 +63,13 @@ a.current {
 .home img {
   width: 300px;
   margin: 50px auto; }
+
+.peluches .category img, .sketchbook .category img {
+  width: 54%;
+  padding: 5px 10% 0 0; }
+.peluches .category a:nth-child(even) img, .sketchbook .category a:nth-child(even) img {
+  width: 44%;
+  padding: 5px 0 0 0; }
 
 .peluches img, .sketchbook img {
   cursor: pointer; }
@@ -91,4 +101,12 @@ p.micro {
     position: absolute;
     padding: 30px;
     border: 8px solid #eeeeee;
-    background: #fafafa; }
+    background: #fafafa;
+    z-index: 2; }
+  .lightbox a.prev, .lightbox a.next {
+    z-index: 3;
+    border-radius: 10px;
+    background: rgba(100, 100, 100, 0.2);
+    position: absolute;
+    padding: 4px;
+    width: 30px; }
