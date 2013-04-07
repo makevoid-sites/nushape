@@ -25,8 +25,12 @@ class Nushape < Sinatra::Base
 
   ### helpers
 
-  def subpath(url=request.path)
+  def category(url=request.path)
     url.split("/")[1]
+  end
+
+  def subpath(url=request.path)
+    url.split("/")[2]
   end
 
   def nav_link_to(label, url, options={})
@@ -38,9 +42,13 @@ class Nushape < Sinatra::Base
     link_to label, url, options
   end
 
+  def load_categories
+    cats = Dir.glob("#{PATH}/public/photos/#{category}/*")
+    
+  end
+
   def load_photos
-    dir = subpath
-    paths = Dir.glob("#{PATH}/public/photos/#{dir}/*.{jpg,JPG}")
+    paths = Dir.glob("#{PATH}/public/photos/#{category}/#{subpath}/*.{jpg,JPG}")
     @photos = paths.map do |photo|
       dimensions = Dimensions.dimensions photo
       vertical = dimensions[0] < dimensions[1]
@@ -54,13 +62,23 @@ class Nushape < Sinatra::Base
     haml :index
   end
 
+
   get "/peluches" do
+    haml :category
+  end
+
+  get "/peluches/*" do
     haml :photos
   end
 
   get "/sketchbook" do
+    haml :category
+  end
+
+  get "/sketchbook/*" do
     haml :photos
   end
+
 
   get "/contacts" do
     haml :contacts
