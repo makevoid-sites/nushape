@@ -43,37 +43,56 @@ lightbox.show = (url) ->
 
   $(".lightbox").append("<img src='#{url}' />")
 
-  #this.show_arrows()
+  this.show_arrows()
 
   $(".lightbox img").imagesLoaded ->
     $(".lightbox").css({ display: "block" })
     width = lightbox.image_width()
     img = $(".lightbox img")
     img.css({ width: width })
-    top = $(document).scrollTop()
+    top = $(document).scrollTop() + $(window).height() / 2 - img.outerHeight() / 2
+    top = top - 50 # FIXME: hack
     img.css({ top: top })
-    marginLeft = img.width() / 2
-    padding = 15 # from css
-    # console.log $(window).width(), img.width(), marginLeft
-    $(".lightbox").css( left: -marginLeft-padding )
+    padding = 20 # from css
+    margin_left = $(window).width() / 2 - img.width() / 2 - padding
+    $(".lightbox img").css( left: margin_left-padding )
 
-    links_top = img.height() / 2 + 60 # TODO: use outerheight
+    links_top = img.outerHeight() / 2 + 20 # FIXME: hack
 
-    $(".lightbox a").css( top: top+links_top, left: img.width()  )
-    $(".lightbox a.next").css( left: img.width()  )
+    $(".lightbox a").css( top: top+links_top  )
     
-    $(".lightbox a").css( left: 180 )
-    $(".lightbox a.next").css( right: 180 )
-    console.log(img.width())
+    out = $(".lightbox a.next").outerWidth() + 30
+    $(".lightbox a").css( left: margin_left-out )
+    $(".lightbox a.next").css( left: margin_left+img.outerWidth()-out/2+27 )
 
-    # top: 286px;
-    # left: 825px;
 
 lightbox.show_arrows = ->
   prev_arrow = "<a class='prev' href='javascript:void(0)'><</a>"
   next_arrow = "<a class='next' href='javascript:void(0)'>></a>"
   $(".lightbox").prepend prev_arrow
   $(".lightbox").prepend next_arrow
+  $(".lightbox").prepend "<div class='bg'></div>"
+
+  this.bind_arrows()
+
+lightbox.bind_arrows = ->
+  this.load_images()
+  $(".lightbox a").off "click"
+  $(".lightbox .prev").on "click", (evt) ->
+    lightbox.prev()
+    evt.preventDefault()
+  $(".lightbox .next").on "click", (evt) ->
+    lightbox.next()
+    evt.preventDefault()
+
+lightbox.load_images = ->
+  $("#container > .content img")
+
+lightbox.next = ->
+  console.log "Asdas"
+
+lightbox.prev = ->
+  console.log "Asdas2"
 
 lightbox.resize = ->
   height = $("body").height()

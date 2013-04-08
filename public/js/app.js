@@ -46,8 +46,9 @@
       return lightbox.close();
     });
     $(".lightbox").append("<img src='" + url + "' />");
+    this.show_arrows();
     return $(".lightbox img").imagesLoaded(function() {
-      var img, links_top, marginLeft, padding, top, width;
+      var img, links_top, margin_left, out, padding, top, width;
 
       $(".lightbox").css({
         display: "block"
@@ -57,30 +58,27 @@
       img.css({
         width: width
       });
-      top = $(document).scrollTop();
+      top = $(document).scrollTop() + $(window).height() / 2 - img.outerHeight() / 2;
+      top = top - 50;
       img.css({
         top: top
       });
-      marginLeft = img.width() / 2;
-      padding = 15;
-      $(".lightbox").css({
-        left: -marginLeft - padding
+      padding = 20;
+      margin_left = $(window).width() / 2 - img.width() / 2 - padding;
+      $(".lightbox img").css({
+        left: margin_left - padding
       });
-      links_top = img.height() / 2 + 60;
+      links_top = img.outerHeight() / 2 + 20;
       $(".lightbox a").css({
-        top: top + links_top,
-        left: img.width()
+        top: top + links_top
       });
-      $(".lightbox a.next").css({
-        left: img.width()
-      });
+      out = $(".lightbox a.next").outerWidth() + 30;
       $(".lightbox a").css({
-        left: 180
+        left: margin_left - out
       });
-      $(".lightbox a.next").css({
-        right: 180
+      return $(".lightbox a.next").css({
+        left: margin_left + img.outerWidth() - out / 2 + 27
       });
-      return console.log(img.width());
     });
   };
 
@@ -90,7 +88,34 @@
     prev_arrow = "<a class='prev' href='javascript:void(0)'><</a>";
     next_arrow = "<a class='next' href='javascript:void(0)'>></a>";
     $(".lightbox").prepend(prev_arrow);
-    return $(".lightbox").prepend(next_arrow);
+    $(".lightbox").prepend(next_arrow);
+    $(".lightbox").prepend("<div class='bg'></div>");
+    return this.bind_arrows();
+  };
+
+  lightbox.bind_arrows = function() {
+    this.load_images();
+    $(".lightbox a").off("click");
+    $(".lightbox .prev").on("click", function(evt) {
+      lightbox.prev();
+      return evt.preventDefault();
+    });
+    return $(".lightbox .next").on("click", function(evt) {
+      lightbox.next();
+      return evt.preventDefault();
+    });
+  };
+
+  lightbox.load_images = function() {
+    return $("#container > .content img");
+  };
+
+  lightbox.next = function() {
+    return console.log("Asdas");
+  };
+
+  lightbox.prev = function() {
+    return console.log("Asdas2");
   };
 
   lightbox.resize = function() {

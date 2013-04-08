@@ -6,7 +6,7 @@
     %link{ rel: "stylesheet", href: "/css/main.css" }
     = partial :metas
 
-  %body
+  %body{ class: firstpath || "home" }
     #container
       %header
         %h1
@@ -17,7 +17,7 @@
         - nav_link_to "Plushies"  , "/peluches"
         - nav_link_to "Sketchbooks",  "/sketchbook"
         - nav_link_to "Contacts"  , "/contacts"
-      %section.content{ class: firstpath || "home" }
+      %section.content
         = yield
         .clear
 

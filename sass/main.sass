@@ -17,7 +17,8 @@ html, body, #container
 // style
 
 body
-  background: #FFF
+  background: #FFF  
+  height: 100%
 
   text-align: center
 
@@ -26,8 +27,8 @@ body
 
 
 #container
-  width: 30%
-  margin: 0 auto 60px
+  width: 90%
+  margin: 0 auto
   max-width: 1000px
 
 .center
@@ -55,7 +56,6 @@ a.current
 
 
 #container > nav
-  margin-left: 30px
   margin-bottom: 30px
   a
     border-right: 1px solid black
@@ -65,7 +65,9 @@ a.current
 
 
 .content
-  margin-left: 26px
+  width: 40%
+  margin: 0 auto
+  padding: 0 0 60px 
 .content img
   width: 100%
   margin: 10px 0
@@ -111,24 +113,33 @@ p.micro
 .lightbox
   position: absolute
   width: 100%
-  //background: rgba(220,220,220,0.3)
   display: none
   text-align: center
   z-index: 20
+  height: 100%
+  top: 0
+  .bg
+    background: rgba(220,220,220,0.6)
+    width: 100%
+    height: 100%
   img
     cursor: pointer
     width: 85%
     margin: 63px auto
     position: absolute
     padding: 30px
-    border: 8px solid #EEE
+    border: 8px solid #DDD
     background: #FAFAFA
     z-index: 2
 
   a.prev, a.next
     z-index: 3
+    font-size: 1.3em
     border-radius: 10px
-    background: rgba(100, 100, 100, 0.2)
+    background: rgba(100, 100, 100, 0.4)
+    color: #FFF
     position: absolute
-    padding: 4px
-    width: 30px
+    padding: 5px
+    width: 40px
+    &:hover
+      background: rgba(100, 100, 100, 0.8)
