@@ -42,11 +42,17 @@
   window.lightbox = lightbox;
 
   lightbox.show = function(url) {
-    $(".lightbox").on("click", function() {
-      return lightbox.close();
+    $(".lightbox").on("click", function(evt) {
+      var tag;
+
+      tag = $(evt.target).prop("tagName");
+      if (tag !== "A") {
+        return lightbox.close();
+      }
     });
-    $(".lightbox").append("<img src='" + url + "' />");
     this.show_arrows();
+    $(".lightbox img").remove();
+    $(".lightbox").append("<img src='" + url + "' />");
     return $(".lightbox img").imagesLoaded(function() {
       var img, links_top, margin_left, out, padding, top, width;
 
@@ -106,12 +112,24 @@
     });
   };
 
-  lightbox.load_images = function() {
+  lightbox.load_images = function() {};
+
+  lightbox.index = 0;
+
+  lightbox.images = function() {
     return $("#container > .content img");
   };
 
+  lightbox.current_img = function() {
+    return $(this.images()[this.index]);
+  };
+
   lightbox.next = function() {
-    return console.log("Asdas");
+    this.index += 1;
+    if (this.index >= this.images().length) {
+      this.index = 0;
+    }
+    return this.show(this.current_img().attr("src"));
   };
 
   lightbox.prev = function() {

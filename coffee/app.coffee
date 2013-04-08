@@ -38,12 +38,15 @@ lightbox = ->
 window.lightbox = lightbox
 
 lightbox.show = (url) ->
-  $(".lightbox").on "click", ->
-    lightbox.close()
-
-  $(".lightbox").append("<img src='#{url}' />")
+  $(".lightbox").on "click", (evt) ->
+    tag = $(evt.target).prop("tagName")
+    unless tag == "A"
+      lightbox.close()
 
   this.show_arrows()
+  $(".lightbox img").remove()
+  $(".lightbox").append("<img src='#{url}' />")
+
 
   $(".lightbox img").imagesLoaded ->
     $(".lightbox").css({ display: "block" })
@@ -86,10 +89,26 @@ lightbox.bind_arrows = ->
     evt.preventDefault()
 
 lightbox.load_images = ->
+
+lightbox.index = 0
+
+lightbox.images = ->
   $("#container > .content img")
 
+lightbox.current_img = ->
+  $ this.images()[this.index]
+
 lightbox.next = ->
-  console.log "Asdas"
+  this.index += 1
+  this.index = 0 if this.index >= this.images().length
+  
+  # this.close()
+
+  # $(".lightbox img").attr "src", this.current_img().attr("src")
+  this.show this.current_img().attr("src")
+  # img = $(".lightbox img")
+  # img.css({ width: img.outerWidth() })
+
 
 lightbox.prev = ->
   console.log "Asdas2"
