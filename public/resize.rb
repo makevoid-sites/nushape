@@ -46,7 +46,7 @@ end
 # main
 
 exec "rm -rf ./photos"
-# exec "rm -rf ./photos_thumbs"
+exec "rm -rf ./photos_thumbs"
 
 @dir_src = dir_src = "photos_src"
 @dir_dest = dir_dest = "photos"
