@@ -53,21 +53,21 @@ lightbox.show = (url) ->
   $(".lightbox img").imagesLoaded ->
     $(".lightbox").css( display: "block" )
     $(".lightbox img").css( opacity: 1 )
-    
+
     width = lightbox.image_width()
     img = $(".lightbox img")
     img.css({ width: width })
     top = $(document).scrollTop() + $(window).height() / 2 - img.outerHeight() / 2
-    top = top - 50 # FIXME: hack
+    top = top - 5 # FIXME: hack
     img.css({ top: top })
     padding = 20 # from css
     margin_left = $(window).width() / 2 - img.width() / 2 - padding
     $(".lightbox img").css( left: margin_left-padding )
 
-    links_top = img.outerHeight() / 2 + 20 # FIXME: hack
+    links_top = img.outerHeight() / 2
 
     $(".lightbox a").css( top: top+links_top  )
-    
+
     out = $(".lightbox a.next").outerWidth() + 30
     $(".lightbox a").css( left: margin_left-out )
     $(".lightbox a.next").css( left: margin_left+img.outerWidth()-out/2+27 )
@@ -121,10 +121,8 @@ lightbox.prev = ->
   this.show this.current_img().data("src_big")
 
 lightbox.resize = ->
-  height = $("body").height()
-  wheight = $(window).height()
   height = Math.max height, wheight
-  $(".lightbox").height height
+  $(".lightbox").height $(window).height()
 
 lightbox.close = ->
   $(".lightbox").hide()

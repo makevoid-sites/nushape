@@ -105,7 +105,7 @@ p.micro {
   .lightbox img {
     cursor: pointer;
     width: 85%;
-    margin: 63px auto;
+    margin: 0 auto;
     position: absolute;
     padding: 30px;
     border: 8px solid #dddddd;

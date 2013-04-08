@@ -71,7 +71,7 @@
         width: width
       });
       top = $(document).scrollTop() + $(window).height() / 2 - img.outerHeight() / 2;
-      top = top - 50;
+      top = top - 5;
       img.css({
         top: top
       });
@@ -80,7 +80,7 @@
       $(".lightbox img").css({
         left: margin_left - padding
       });
-      links_top = img.outerHeight() / 2 + 20;
+      links_top = img.outerHeight() / 2;
       $(".lightbox a").css({
         top: top + links_top
       });
@@ -159,12 +159,10 @@
   };
 
   lightbox.resize = function() {
-    var height, wheight;
+    var height;
 
-    height = $("body").height();
-    wheight = $(window).height();
     height = Math.max(height, wheight);
-    return $(".lightbox").height(height);
+    return $(".lightbox").height($(window).height());
   };
 
   lightbox.close = function() {

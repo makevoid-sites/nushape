@@ -64,7 +64,6 @@ class Nushape < Sinatra::Base
     haml :index
   end
 
-
   get "/peluches" do
     haml :category
   end
@@ -81,10 +80,10 @@ class Nushape < Sinatra::Base
     haml :photos
   end
 
-
   get "/contacts" do
     haml :contacts
   end
+
 end
 
 # require_all "#{path}/routes"
