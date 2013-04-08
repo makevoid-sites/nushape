@@ -110,7 +110,12 @@ p.micro {
     padding: 30px;
     border: 8px solid #dddddd;
     background: #fafafa;
-    z-index: 2; }
+    z-index: 2;
+    opacity: 0;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out; }
   .lightbox a.prev, .lightbox a.next {
     z-index: 3;
     font-size: 1.3em;
@@ -122,3 +127,6 @@ p.micro {
     width: 40px; }
     .lightbox a.prev:hover, .lightbox a.next:hover {
       background: rgba(100, 100, 100, 0.8); }
+  .lightbox .spacer {
+    width: 100%;
+    background: white; }

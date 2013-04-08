@@ -134,6 +134,12 @@ p.micro
     background: #FAFAFA
     z-index: 2
 
+    opacity: 0
+    -ms-transition:     opacity 0.3s ease-in-out
+    -o-transition:      opacity 0.3s ease-in-out
+    -moz-transition:    opacity 0.3s ease-in-out
+    -webkit-transition: opacity 0.3s ease-in-out
+
   a.prev, a.next
     z-index: 3
     font-size: 1.3em
@@ -145,3 +151,7 @@ p.micro
     width: 40px
     &:hover
       background: rgba(100, 100, 100, 0.8)
+
+  .spacer
+    width: 100%
+    background: #FFF

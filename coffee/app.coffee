@@ -44,12 +44,16 @@ lightbox.show = (url) ->
       lightbox.close()
 
   this.show_arrows()
+
+  $(".lightbox img").css( opacity: 0 )
   $(".lightbox img").remove()
   $(".lightbox").append("<img src='#{url}' />")
 
 
   $(".lightbox img").imagesLoaded ->
-    $(".lightbox").css({ display: "block" })
+    $(".lightbox").css( display: "block" )
+    $(".lightbox img").css( opacity: 1 )
+    
     width = lightbox.image_width()
     img = $(".lightbox img")
     img.css({ width: width })
@@ -88,6 +92,14 @@ lightbox.bind_arrows = ->
     lightbox.next()
     evt.preventDefault()
 
+  self = this
+  $(window).off "keydown"
+  $(window).on "keydown", (evt) ->
+    if evt.keyCode == 37
+      self.prev()
+    if evt.keyCode == 39
+      self.next()
+
 lightbox.load_images = ->
 
 lightbox.index = 0
@@ -101,17 +113,12 @@ lightbox.current_img = ->
 lightbox.next = ->
   this.index += 1
   this.index = 0 if this.index >= this.images().length
-  
-  # this.close()
-
-  # $(".lightbox img").attr "src", this.current_img().attr("src")
-  this.show this.current_img().attr("src")
-  # img = $(".lightbox img")
-  # img.css({ width: img.outerWidth() })
-
+  this.show this.current_img().data("src_big")
 
 lightbox.prev = ->
-  console.log "Asdas2"
+  this.index -= 1
+  this.index = this.images().length-1 if this.index <= 0
+  this.show this.current_img().data("src_big")
 
 lightbox.resize = ->
   height = $("body").height()

@@ -51,6 +51,9 @@
       }
     });
     this.show_arrows();
+    $(".lightbox img").css({
+      opacity: 0
+    });
     $(".lightbox img").remove();
     $(".lightbox").append("<img src='" + url + "' />");
     return $(".lightbox img").imagesLoaded(function() {
@@ -58,6 +61,9 @@
 
       $(".lightbox").css({
         display: "block"
+      });
+      $(".lightbox img").css({
+        opacity: 1
       });
       width = lightbox.image_width();
       img = $(".lightbox img");
@@ -100,15 +106,27 @@
   };
 
   lightbox.bind_arrows = function() {
+    var self;
+
     this.load_images();
     $(".lightbox a").off("click");
     $(".lightbox .prev").on("click", function(evt) {
       lightbox.prev();
       return evt.preventDefault();
     });
-    return $(".lightbox .next").on("click", function(evt) {
+    $(".lightbox .next").on("click", function(evt) {
       lightbox.next();
       return evt.preventDefault();
+    });
+    self = this;
+    $(window).off("keydown");
+    return $(window).on("keydown", function(evt) {
+      if (evt.keyCode === 37) {
+        self.prev();
+      }
+      if (evt.keyCode === 39) {
+        return self.next();
+      }
     });
   };
 
@@ -129,11 +147,15 @@
     if (this.index >= this.images().length) {
       this.index = 0;
     }
-    return this.show(this.current_img().attr("src"));
+    return this.show(this.current_img().data("src_big"));
   };
 
   lightbox.prev = function() {
-    return console.log("Asdas2");
+    this.index -= 1;
+    if (this.index <= 0) {
+      this.index = this.images().length - 1;
+    }
+    return this.show(this.current_img().data("src_big"));
   };
 
   lightbox.resize = function() {
