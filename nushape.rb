@@ -5,10 +5,10 @@ require "#{path}/config/env.rb"
 class Nushape < Sinatra::Base
   include Voidtools::Sinatra::ViewHelpers
 
-  set :logging, true
-  log = File.new "log/development.log", "a"
-  STDOUT.reopen log
-  STDERR.reopen log
+  # set :logging, true
+  # log = File.new "log/development.log", "a"
+  # STDOUT.reopen log
+  # STDERR.reopen log
 
   # partial :comment, { comment: "blah" }
   # partial :comment, comment
